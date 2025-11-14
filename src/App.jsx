@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Spline from '@splinetool/react-spline'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 function App() {
+  // Process scroll progress
+  const processRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: processRef,
+    offset: ['start 0.8', 'end 0.2']
+  })
+  const progressScale = useTransform(scrollYProgress, [0, 1], [0.02, 1])
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
@@ -69,15 +77,15 @@ function App() {
         </div>
       </section>
 
-      {/* Video Showcase above Features */}
+      {/* Video Showcase above Features (smaller reel) */}
       <section id="work" className="relative bg-black py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-6 text-center">
             <h2 className="text-3xl md:text-4xl font-semibold">Showcase</h2>
             <p className="mt-2 text-zinc-300">A quick look at pacing, polish, and narrative clarity.</p>
           </div>
-          {/* Instagram Reel (vertical 9:16) */}
-          <div className="relative w-full max-w-4xl mx-auto aspect-[9/16] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
+          {/* Instagram Reel (vertical 9:16, intentionally smaller) */}
+          <div className="relative w-full max-w-xs md:max-w-sm lg:max-w-md mx-auto aspect-[9/16] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
             <iframe
               className="absolute inset-0 h-full w-full"
               src="https://www.instagram.com/reel/DPjNQZijHtg/embed"
@@ -94,6 +102,11 @@ function App() {
       {/* Features with Sticky Sidebar on the RIGHT */}
       <section id="features" className="relative py-20 md:py-28 bg-gradient-to-b from-black to-zinc-950">
         <div className="mx-auto max-w-7xl px-6">
+          {/* Section Headline for the left list */}
+          <div className="mb-10 text-center">
+            <h2 className="text-3xl md:text-4xl font-semibold">Line editing, proofreading, and structural clarity</h2>
+            <p className="mt-3 text-zinc-300">Precision at every layer, from voice to structure.</p>
+          </div>
           <div className="grid gap-10 lg:grid-cols-2">
             {/* Left: Text windows */}
             <div className="space-y-6">
@@ -131,21 +144,19 @@ function App() {
                   transition={{ duration: 0.6, ease: 'easeOut' }}
                   className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:bg-white/[0.08]"
                 >
-                  <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-4" />
+                  <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-4 mx-auto lg:mx-0" />
                   <h3 className="text-lg font-semibold">{card.title}</h3>
                   <p className="mt-2 text-sm text-zinc-300">{card.body}</p>
                 </motion.div>
               ))}
             </div>
 
-            {/* Right: Sticky What you get, each item in its own window */}
+            {/* Right: Sticky What you get, with centered headline */}
             <div>
               <div className="lg:sticky lg:top-8 space-y-4">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600" />
-                    <h2 className="text-2xl font-semibold">What you get</h2>
-                  </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur text-center">
+                  <div className="mx-auto h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-3" />
+                  <h2 className="text-2xl font-semibold">What you get</h2>
                   <p className="mt-3 text-zinc-300">Clear, actionable edits with a calm, collaborative process.</p>
                 </div>
                 {[
@@ -169,37 +180,51 @@ function App() {
         </div>
       </section>
 
-      {/* Process: step-by-step, smooth reveal while scrolling */}
+      {/* Process: step-by-step, smooth reveal while scrolling + progress bar */}
       <section id="process" className="relative py-24 bg-zinc-950">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-semibold">A smooth, steady process</h2>
-            <p className="mt-3 text-zinc-300">Each step fades in as you scroll for a calm reading rhythm.</p>
-          </div>
-          <div className="space-y-8">
-            {[
-              { n: '01', t: 'Discovery', d: 'Discovery call and a quick sample pass to align on voice and goals.' },
-              { n: '02', t: 'Planning', d: 'Plan, timeline, and editor assignment with clear milestones.' },
-              { n: '03', t: 'Editing', d: 'Edits with comments, quick reviews, and async collaboration.' },
-              { n: '04', t: 'Delivery', d: 'Final polish, handoff, and guidance for next steps.' }
-            ].map((s, i) => (
-              <motion.div
-                key={s.n}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.5 }}
-                transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.05 }}
-                className="rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-black p-6"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="text-purple-400 font-semibold">{s.n}</div>
-                  <div>
-                    <h3 className="text-lg font-semibold">{s.t}</h3>
-                    <p className="mt-2 text-sm text-zinc-300">{s.d}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+        <div className="mx-auto max-w-6xl px-6" ref={processRef}>
+          <div className="grid grid-cols-[10px_1fr] gap-6">
+            {/* Progress bar column */}
+            <div className="relative">
+              <div className="sticky top-24 h-[60vh] w-[2px] bg-white/10 rounded-full mx-auto">
+                <motion.div
+                  className="origin-top w-[2px] rounded-full bg-gradient-to-b from-purple-500 to-indigo-500"
+                  style={{ height: '100%', scaleY: progressScale }}
+                />
+              </div>
+            </div>
+            {/* Content column */}
+            <div>
+              <div className="text-left mb-12">
+                <h2 className="text-3xl md:text-4xl font-semibold">A smooth, steady process</h2>
+                <p className="mt-3 text-zinc-300">Each step fades in as you scroll for a calm reading rhythm.</p>
+              </div>
+              <div className="space-y-8">
+                {[
+                  { n: '01', t: 'Discovery', d: 'Discovery call and a quick sample pass to align on voice and goals.' },
+                  { n: '02', t: 'Planning', d: 'Plan, timeline, and editor assignment with clear milestones.' },
+                  { n: '03', t: 'Editing', d: 'Edits with comments, quick reviews, and async collaboration.' },
+                  { n: '04', t: 'Delivery', d: 'Final polish, handoff, and guidance for next steps.' }
+                ].map((s, i) => (
+                  <motion.div
+                    key={s.n}
+                    initial={{ opacity: 0, y: 32 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.5 }}
+                    transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.05 }}
+                    className="rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-black p-6"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="text-purple-400 font-semibold">{s.n}</div>
+                      <div>
+                        <h3 className="text-lg font-semibold">{s.t}</h3>
+                        <p className="mt-2 text-sm text-zinc-300">{s.d}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -213,7 +238,7 @@ function App() {
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {[1,2].map((i) => (
-              <div key={i} className="rounded-3xl border border-white/10 bg-gradient-to-b from-zinc-900 to-zinc-950 p-8 md:p-10 min-h-[280px] flex flex-col justify-between">
+              <div key={i} className="rounded-3xl border border-white/10 bg-gradient-to-b from-zinc-900 to-zinc-950 p-8 md:p-10 min-h-[320px] md:min-h-[380px] flex flex-col justify-between">
                 <p className="text-xl md:text-2xl leading-relaxed text-zinc-200">“We ship faster and sound sharper. The edit memos make every revision feel obvious. Our team learned a ton about voice.”</p>
                 <div className="mt-8 flex items-center gap-4">
                   <div className="h-14 w-14 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600" />
