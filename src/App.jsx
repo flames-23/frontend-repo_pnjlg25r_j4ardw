@@ -1,5 +1,6 @@
 import React from 'react'
 import Spline from '@splinetool/react-spline'
+import { motion } from 'framer-motion'
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
           <div className="hidden md:flex items-center gap-8 text-sm text-zinc-300">
             <a href="#features" className="hover:text-white transition-colors">Features</a>
             <a href="#process" className="hover:text-white transition-colors">Process</a>
-            <a href="#work" className="hover:text-white transition-colors">Work</a>
+            <a href="#work" className="hover:text-white transition-colors">Showcase</a>
+            <a href="#testimonials" className="hover:text-white transition-colors">Testimonials</a>
           </div>
           <a href="#contact" className="inline-flex items-center gap-2 rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-4 py-2 text-sm font-medium">Get a Quote</a>
         </nav>
@@ -74,106 +76,154 @@ function App() {
             <h2 className="text-3xl md:text-4xl font-semibold">Showcase</h2>
             <p className="mt-2 text-zinc-300">A quick look at pacing, polish, and narrative clarity.</p>
           </div>
-          <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
-            {/* Replace src with your reel link (YouTube/Vimeo) */}
+          {/* Instagram Reel (vertical 9:16) */}
+          <div className="relative w-full max-w-4xl mx-auto aspect-[9/16] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
             <iframe
               className="absolute inset-0 h-full w-full"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
-              title="Editing Reel"
+              src="https://www.instagram.com/reel/DPjNQZijHtg/embed"
+              title="Instagram Reel"
               frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowTransparency={true}
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
               allowFullScreen
             />
           </div>
         </div>
       </section>
 
-      {/* Features with Sticky Sidebar */}
+      {/* Features with Sticky Sidebar on the RIGHT */}
       <section id="features" className="relative py-20 md:py-28 bg-gradient-to-b from-black to-zinc-950">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-10 lg:grid-cols-3">
-            {/* Sticky intro card */}
-            <div className="lg:col-span-1">
-              <div className="lg:sticky lg:top-8 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600" />
-                  <h2 className="text-2xl font-semibold">What you get</h2>
-                </div>
-                <p className="mt-3 text-zinc-300">Clear, actionable edits with a calm, collaborative process.</p>
-                <ul className="mt-6 space-y-3 text-sm text-zinc-300">
-                  <li className="flex gap-3"><span className="text-purple-400">•</span> Line edits that preserve voice</li>
-                  <li className="flex gap-3"><span className="text-purple-400">•</span> Proofreading and consistency checks</li>
-                  <li className="flex gap-3"><span className="text-purple-400">•</span> Structural clarity and flow</li>
-                  <li className="flex gap-3"><span className="text-purple-400">•</span> Brand voice systems and guidelines</li>
-                  <li className="flex gap-3"><span className="text-purple-400">•</span> Fast, collaborative delivery</li>
-                </ul>
-                <a href="#contact" className="mt-6 inline-flex rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-4 py-2 text-sm font-medium">Request a Quote</a>
-              </div>
+          <div className="grid gap-10 lg:grid-cols-2">
+            {/* Left: Text windows */}
+            <div className="space-y-6">
+              {[
+                {
+                  title: 'Line Editing & Clarity',
+                  body: 'Sentence-by-sentence refinements that sharpen voice, tighten flow, and remove ambiguity without losing tone.'
+                },
+                {
+                  title: 'Proofreading & Consistency',
+                  body: 'Typos, grammar, punctuation, and style-guide alignment so every detail feels intentional and trustworthy.'
+                },
+                {
+                  title: 'Structural Editing',
+                  body: 'Reorganize sections, clarify hierarchy, and create stronger narrative flow for articles, decks, docs, and books.'
+                },
+                {
+                  title: 'Localization Readiness',
+                  body: 'Prepare content for global audiences with idiom checks, cultural sensitivity, and translatable phrasing.'
+                },
+                {
+                  title: 'Brand Voice Systems',
+                  body: 'Codify tone, terminology, and examples in a practical guide your team actually uses.'
+                },
+                {
+                  title: 'Fast, Collaborative Delivery',
+                  body: 'Async reviews in your tools—Docs, Figma, Notion—plus transparent timelines and feedback loops.'
+                }
+              ].map((card, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                  className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:bg-white/[0.08]"
+                >
+                  <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-4" />
+                  <h3 className="text-lg font-semibold">{card.title}</h3>
+                  <p className="mt-2 text-sm text-zinc-300">{card.body}</p>
+                </motion.div>
+              ))}
             </div>
 
-            {/* Feature cards */}
-            <div className="lg:col-span-2 grid gap-6 sm:grid-cols-2">
-              <div className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:bg-white/[0.08]">
-                <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-4" />
-                <h3 className="text-lg font-semibold">Line Editing & Clarity</h3>
-                <p className="mt-2 text-sm text-zinc-300">Sentence-by-sentence refinements that sharpen voice, tighten flow, and remove ambiguity without losing tone.</p>
-              </div>
-              <div className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:bg-white/[0.08]">
-                <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-4" />
-                <h3 className="text-lg font-semibold">Proofreading & Consistency</h3>
-                <p className="mt-2 text-sm text-zinc-300">Typos, grammar, punctuation, and style-guide alignment so every detail feels intentional and trustworthy.</p>
-              </div>
-              <div className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:bg-white/[0.08]">
-                <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-4" />
-                <h3 className="text-lg font-semibold">Structural Editing</h3>
-                <p className="mt-2 text-sm text-zinc-300">Reorganize sections, clarify hierarchy, and create stronger narrative flow for articles, decks, docs, and books.</p>
-              </div>
-              <div className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:bg-white/[0.08]">
-                <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-4" />
-                <h3 className="text-lg font-semibold">Localization Readiness</h3>
-                <p className="mt-2 text-sm text-zinc-300">Prepare content for global audiences with idiom checks, cultural sensitivity, and translatable phrasing.</p>
-              </div>
-              <div className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:bg-white/[0.08]">
-                <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-4" />
-                <h3 className="text-lg font-semibold">Brand Voice Systems</h3>
-                <p className="mt-2 text-sm text-zinc-300">Codify tone, terminology, and examples in a practical guide your team actually uses.</p>
-              </div>
-              <div className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:bg-white/[0.08]">
-                <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-4" />
-                <h3 className="text-lg font-semibold">Fast, Collaborative Delivery</h3>
-                <p className="mt-2 text-sm text-zinc-300">Async reviews in your tools—Docs, Figma, Notion—plus transparent timelines and feedback loops.</p>
+            {/* Right: Sticky What you get, each item in its own window */}
+            <div>
+              <div className="lg:sticky lg:top-8 space-y-4">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600" />
+                    <h2 className="text-2xl font-semibold">What you get</h2>
+                  </div>
+                  <p className="mt-3 text-zinc-300">Clear, actionable edits with a calm, collaborative process.</p>
+                </div>
+                {[
+                  'Line edits that preserve voice',
+                  'Proofreading and consistency checks',
+                  'Structural clarity and flow',
+                  'Brand voice systems and guidelines',
+                  'Fast, collaborative delivery'
+                ].map((item, idx) => (
+                  <div key={idx} className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+                    <div className="flex items-start gap-3">
+                      <span className="mt-1 h-2 w-2 rounded-full bg-purple-400" />
+                      <p className="text-sm text-zinc-300">{item}</p>
+                    </div>
+                  </div>
+                ))}
+                <a href="#contact" className="block text-center rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-4 py-3 text-sm font-medium">Request a Quote</a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Process */}
-      <section id="process" className="relative py-20 bg-zinc-950">
+      {/* Process: step-by-step, smooth reveal while scrolling */}
+      <section id="process" className="relative py-24 bg-zinc-950">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-semibold">A smooth, steady process</h2>
+            <p className="mt-3 text-zinc-300">Each step fades in as you scroll for a calm reading rhythm.</p>
+          </div>
+          <div className="space-y-8">
+            {[
+              { n: '01', t: 'Discovery', d: 'Discovery call and a quick sample pass to align on voice and goals.' },
+              { n: '02', t: 'Planning', d: 'Plan, timeline, and editor assignment with clear milestones.' },
+              { n: '03', t: 'Editing', d: 'Edits with comments, quick reviews, and async collaboration.' },
+              { n: '04', t: 'Delivery', d: 'Final polish, handoff, and guidance for next steps.' }
+            ].map((s, i) => (
+              <motion.div
+                key={s.n}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.05 }}
+                className="rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-black p-6"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="text-purple-400 font-semibold">{s.n}</div>
+                  <div>
+                    <h3 className="text-lg font-semibold">{s.t}</h3>
+                    <p className="mt-2 text-sm text-zinc-300">{s.d}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials: larger and taller */}
+      <section id="testimonials" className="relative py-24 bg-black">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-10 lg:grid-cols-2 items-center">
-            <div className="text-center lg:text-left">
-              <h2 className="text-3xl md:text-4xl font-semibold">A smooth, steady process</h2>
-              <p className="mt-3 text-zinc-300">Share your goals and samples, we’ll scope the work, then iterate quickly with clear checkpoints.</p>
-              <ol className="mt-6 space-y-4 text-zinc-300">
-                <li className="flex gap-3 justify-center lg:justify-start"><span className="text-purple-400">01</span> Discovery call and sample pass</li>
-                <li className="flex gap-3 justify-center lg:justify-start"><span className="text-purple-400">02</span> Plan, timeline, and editor assignment</li>
-                <li className="flex gap-3 justify-center lg:justify-start"><span className="text-purple-400">03</span> Edits with comments and quick reviews</li>
-                <li className="flex gap-3 justify-center lg:justify-start"><span className="text-purple-400">04</span> Final polish and delivery</li>
-              </ol>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-black p-6">
-              <div className="rounded-xl bg-black/50 p-6">
-                <p className="text-zinc-300 text-center lg:text-left">“We ship faster and sound sharper. The edit memos make every revision feel obvious.”</p>
-                <div className="mt-4 flex items-center justify-center lg:justify-start gap-3">
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600" />
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-semibold">What clients say</h2>
+            <p className="mt-3 text-zinc-300">Bigger, roomier testimonials for easier reading.</p>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2">
+            {[1,2].map((i) => (
+              <div key={i} className="rounded-3xl border border-white/10 bg-gradient-to-b from-zinc-900 to-zinc-950 p-8 md:p-10 min-h-[280px] flex flex-col justify-between">
+                <p className="text-xl md:text-2xl leading-relaxed text-zinc-200">“We ship faster and sound sharper. The edit memos make every revision feel obvious. Our team learned a ton about voice.”</p>
+                <div className="mt-8 flex items-center gap-4">
+                  <div className="h-14 w-14 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600" />
                   <div>
                     <p className="text-sm font-medium">Head of Content, SaaS</p>
                     <p className="text-xs text-zinc-400">Retainer client</p>
                   </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
