@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import Spline from '@splinetool/react-spline'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { PenLine, SpellCheck, Layers, Globe2, BookOpen, Zap, CheckCircle2 } from 'lucide-react'
+import { Scissors, Clapperboard, Film, Camera, Wand2, Zap, CheckCircle2 } from 'lucide-react'
 
 function App() {
   // Process scroll progress
@@ -12,7 +12,7 @@ function App() {
   })
   const progressScale = useTransform(scrollYProgress, [0, 1], [0.02, 1])
 
-  const featureIcons = [PenLine, SpellCheck, Layers, Globe2, BookOpen, Zap]
+  const featureIcons = [Scissors, Clapperboard, Film, Camera, Wand2, Zap]
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -55,25 +55,25 @@ function App() {
             <div className="max-w-3xl">
               <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-200 backdrop-blur">
                 <span className="h-2 w-2 rounded-full bg-purple-500 animate-pulse" />
-                Premium Editing & Proofreading
+                Premium Video Editing
               </div>
               <h1 className="mt-6 text-4xl md:text-6xl font-semibold leading-tight">
-                Elevate Every Word
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-200">with Editorial Precision</span>
+                Elevate Every Frame
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-200">with Cinematic Precision</span>
               </h1>
               <p className="mt-5 text-zinc-300 md:text-lg">
-                We help teams, authors, and brands publish with confidence—polished copy, consistent voice, and immaculate clarity.
+                We help creators, brands, and teams tell tighter stories—clean cuts, color that pops, sound that carries, and motion that engages.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#contact" className="inline-flex justify-center rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-6 py-3 text-sm font-medium">Start a Project</a>
                 <a href="#features" className="inline-flex justify-center rounded-md border border-white/10 bg-white/5 hover:bg-white/10 transition-colors px-6 py-3 text-sm font-medium text-zinc-200">Explore Features</a>
               </div>
               <div className="mt-8 flex items-center justify-center gap-6 text-xs text-zinc-400">
-                <span>24–72h turnaround</span>
+                <span>Reels, YouTube, Ads, Docs</span>
                 <span className="h-1 w-1 rounded-full bg-zinc-500" />
-                <span>Dedicated editor</span>
+                <span>Captions & Thumbnails</span>
                 <span className="h-1 w-1 rounded-full bg-zinc-500" />
-                <span>Style-guide alignment</span>
+                <span>Multi-aspect delivery</span>
               </div>
             </div>
           </div>
@@ -85,7 +85,7 @@ function App() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-6 text-center">
             <h2 className="text-3xl md:text-4xl font-semibold">Showcase</h2>
-            <p className="mt-2 text-zinc-300">A quick look at pacing, polish, and narrative clarity.</p>
+            <p className="mt-2 text-zinc-300">A quick look at pacing, polish, and audience retention.</p>
           </div>
           {/* Instagram Reel (vertical 9:16, intentionally smaller) */}
           <div className="relative w-full max-w-xs md:max-w-sm lg:max-w-md mx-auto aspect-[9/16] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
@@ -111,36 +111,36 @@ function App() {
         <div className="mx-auto max-w-7xl px-6">
           {/* Section Headline for the left list */}
           <div className="mb-10 text-center">
-            <h2 className="text-3xl md:text-4xl font-semibold">Line editing, proofreading, and structural clarity</h2>
-            <p className="mt-3 text-zinc-300">Precision at every layer, from voice to structure.</p>
+            <h2 className="text-3xl md:text-4xl font-semibold">Cuts, color, motion, and story clarity</h2>
+            <p className="mt-3 text-zinc-300">Precision at every layer—from rhythm and structure to polish and packaging.</p>
           </div>
           <div className="grid gap-10 lg:grid-cols-2">
             {/* Left: Centered narrow boxes with subtle icons */}
             <div className="space-y-6">
               {[
                 {
-                  title: 'Line Editing & Clarity',
-                  body: 'Sentence-by-sentence refinements that sharpen voice, tighten flow, and remove ambiguity without losing tone.'
+                  title: 'Story-driven Cuts',
+                  body: 'Tight pacing, clean transitions, and narrative focus for YouTube, ads, and documentaries.'
                 },
                 {
-                  title: 'Proofreading & Consistency',
-                  body: 'Typos, grammar, punctuation, and style-guide alignment so every detail feels intentional and trustworthy.'
+                  title: 'Color & Sound Polish',
+                  body: 'Balanced color, noise cleanup, EQ, and tasteful sweetening so everything feels intentional.'
                 },
                 {
-                  title: 'Structural Editing',
-                  body: 'Reorganize sections, clarify hierarchy, and create stronger narrative flow for articles, decks, docs, and books.'
+                  title: 'Motion Graphics & Titles',
+                  body: 'Lower thirds, openers, chapter cards, and subtle motion to reinforce the message.'
                 },
                 {
-                  title: 'Localization Readiness',
-                  body: 'Prepare content for global audiences with idiom checks, cultural sensitivity, and translatable phrasing.'
+                  title: 'Shorts & Reels Repurposing',
+                  body: 'Turn long-form into thumb-stopping 9:16 clips with dynamic cropping and beat-matched cuts.'
                 },
                 {
-                  title: 'Brand Voice Systems',
-                  body: 'Codify tone, terminology, and examples in a practical guide your team actually uses.'
+                  title: 'Captions & Accessibility',
+                  body: 'Accurate burned-in captions or SRTs with brand styling and callouts.'
                 },
                 {
                   title: 'Fast, Collaborative Delivery',
-                  body: 'Async reviews in your tools—Docs, Figma, Notion—plus transparent timelines and feedback loops.'
+                  body: 'Clear review links, versioning, and transparent timelines built around your launch.'
                 }
               ].map((card, i) => {
                 const Icon = featureIcons[i % featureIcons.length]
@@ -168,14 +168,14 @@ function App() {
               <div className="lg:sticky lg:top-8 space-y-4">
                 <div className="text-center pb-2">
                   <h2 className="text-2xl font-semibold">What you get</h2>
-                  <p className="mt-3 text-zinc-300">Clear, actionable edits with a calm, collaborative process.</p>
+                  <p className="mt-3 text-zinc-300">Clear, collaborative edits built for reach and retention.</p>
                 </div>
                 {[
-                  'Line edits that preserve voice',
-                  'Proofreading and consistency checks',
-                  'Structural clarity and flow',
-                  'Brand voice systems and guidelines',
-                  'Fast, collaborative delivery'
+                  'Edit aligned to your brief and audience',
+                  'Color and sound polish',
+                  'Stylish captions/subtitles (burned-in or SRT)',
+                  'Multiple aspect ratios (16:9, 9:16, 1:1)',
+                  'Thumbnail/title suggestions and export presets'
                 ].map((item, idx) => (
                   <div key={idx} className="relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-purple-500/5 to-white/5 p-4 backdrop-blur">
                     {/* decorative right fill */}
@@ -219,14 +219,14 @@ function App() {
             <div>
               <div className="text-left mb-12">
                 <h2 className="text-3xl md:text-4xl font-semibold">A smooth, steady process</h2>
-                <p className="mt-3 text-zinc-300">Each step fades in as you scroll for a calm reading rhythm.</p>
+                <p className="mt-3 text-zinc-300">Each step fades in as you scroll for a calm review rhythm.</p>
               </div>
               <div className="space-y-8">
                 {[
-                  { n: '01', t: 'Discovery', d: 'Discovery call and a quick sample pass to align on voice and goals.' },
-                  { n: '02', t: 'Planning', d: 'Plan, timeline, and editor assignment with clear milestones.' },
-                  { n: '03', t: 'Editing', d: 'Edits with comments, quick reviews, and async collaboration.' },
-                  { n: '04', t: 'Delivery', d: 'Final polish, handoff, and guidance for next steps.' }
+                  { n: '01', t: 'Brief & Asset Intake', d: 'Share goals, examples, footage, music, and brand elements.' },
+                  { n: '02', t: 'First Cut', d: 'Story-first assembly with rough color and temp sound for alignment.' },
+                  { n: '03', t: 'Refinement', d: 'Beat-matched cuts, color pass, motion/titles, captions, and polish.' },
+                  { n: '04', t: 'Delivery', d: 'Exports in required ratios and codecs, plus thumbnails and SRTs.' }
                 ].map((s, i) => (
                   <motion.div
                     key={s.n}
@@ -256,18 +256,18 @@ function App() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-semibold">What clients say</h2>
-            <p className="mt-3 text-zinc-300">Bigger, roomier testimonials for easier reading.</p>
+            <p className="mt-3 text-zinc-300">Real feedback from teams shipping video at pace.</p>
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {[
               {
-                text: 'They didn\'t just fix typos—they clarified our argument and tightened the structure. Our conversion rate lifted ~18% after publishing the edited pages.',
+                text: 'Retention jumped on our shorts after their repackaging. Cuts hit on the beat, captions are on-brand, and color finally feels consistent across our channel.',
                 name: 'Maya Chen',
                 role: 'Head of Growth, Fintech SaaS',
                 img: 'https://i.pravatar.cc/150?img=12'
               },
               {
-                text: 'The line edits were subtle but powerful. The team\'s edit memos taught our writers how to keep that standard. We now ship faster with fewer review cycles.',
+                text: 'They took a messy multi-cam shoot and turned it into a tight story. Graphics and titles look premium, and the delivery files were exactly what our ads team needed.',
                 name: 'Daniel Ortiz',
                 role: 'Content Lead, DevTools',
                 img: 'https://i.pravatar.cc/150?img=32'
@@ -294,13 +294,13 @@ function App() {
           <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-purple-600/20 to-indigo-700/10 p-8 md:p-12">
             <div className="grid gap-8 md:grid-cols-2 items-center">
               <div className="text-center md:text-left">
-                <h3 className="text-2xl md:text-3xl font-semibold">Ready to get your editing done right?</h3>
-                <p className="mt-2 text-zinc-300">Share your document, audience, and deadline—we\'ll propose the right editing pass and timeline within one business day.</p>
+                <h3 className="text-2xl md:text-3xl font-semibold">Ready to get your video edited right?</h3>
+                <p className="mt-2 text-zinc-300">Share your footage, goals, and timeline—we'll propose the right edit, deliverables, and turnaround within one business day.</p>
               </div>
               <form className="grid gap-4">
                 <input placeholder="Your name" className="rounded-md bg-black/50 border border-white/10 px-4 py-3 text-sm outline-none focus:border-purple-500" />
                 <input placeholder="Email" type="email" className="rounded-md bg-black/50 border border-white/10 px-4 py-3 text-sm outline-none focus:border-purple-500" />
-                <textarea placeholder="What are you editing?" rows="3" className="rounded-md bg-black/50 border border-white/10 px-4 py-3 text-sm outline-none focus:border-purple-500" />
+                <textarea placeholder="What footage are we working with?" rows="3" className="rounded-md bg-black/50 border border-white/10 px-4 py-3 text-sm outline-none focus:border-purple-500" />
                 <button type="button" className="inline-flex justify-center rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-5 py-2.5 text-xs font-medium">Request a Quote</button>
                 <p className="text-xs text-zinc-500 text-center md:text-left">By clicking, you agree to our friendly terms. We’ll never share your info.</p>
               </form>
