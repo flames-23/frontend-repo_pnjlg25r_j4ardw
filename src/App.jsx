@@ -29,7 +29,7 @@ function App() {
             <a href="#work" className="hover:text-white transition-colors">Showcase</a>
             <a href="#testimonials" className="hover:text-white transition-colors">Testimonials</a>
           </div>
-          <a href="#contact" className="inline-flex items-center gap-2 rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-4 py-2 text-sm font-medium">Get a Quote</a>
+          <a href="#contact" className="inline-flex items-center gap-2 rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-3 py-1.5 text-xs font-medium">Get a Quote</a>
         </nav>
       </header>
 
@@ -177,14 +177,22 @@ function App() {
                   'Brand voice systems and guidelines',
                   'Fast, collaborative delivery'
                 ].map((item, idx) => (
-                  <div key={idx} className="rounded-xl border border-white/10 bg-gradient-to-br from-purple-500/5 to-white/5 p-4 backdrop-blur">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="h-4 w-4 mt-0.5 text-purple-300" />
-                      <p className="text-sm text-zinc-300">{item}</p>
+                  <div key={idx} className="relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-purple-500/5 to-white/5 p-4 backdrop-blur">
+                    {/* decorative right fill */}
+                    <div aria-hidden className="pointer-events-none absolute -right-6 top-0 h-24 w-24 rounded-full bg-purple-500/10 blur-2xl" />
+                    <div aria-hidden className="pointer-events-none absolute -right-2 -bottom-2 opacity-10">
+                      <CheckCircle2 className="h-14 w-14 text-purple-300" />
+                    </div>
+                    <div className="relative flex items-start justify-between gap-4">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-4 w-4 mt-0.5 text-purple-300" />
+                        <p className="text-sm text-zinc-300">{item}</p>
+                      </div>
+                      <span className="shrink-0 self-start rounded-full border border-purple-400/20 bg-purple-500/10 px-2 py-0.5 text-[10px] tracking-wide text-purple-200">Included</span>
                     </div>
                   </div>
                 ))}
-                <a href="#contact" className="block text-center rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-4 py-3 text-sm font-medium">Request a Quote</a>
+                <a href="#contact" className="block text-center rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-3 py-2 text-xs font-medium">Request a Quote</a>
               </div>
             </div>
           </div>
@@ -251,14 +259,27 @@ function App() {
             <p className="mt-3 text-zinc-300">Bigger, roomier testimonials for easier reading.</p>
           </div>
           <div className="grid gap-8 md:grid-cols-2">
-            {[1,2].map((i) => (
+            {[
+              {
+                text: 'They didn\'t just fix typos—they clarified our argument and tightened the structure. Our conversion rate lifted ~18% after publishing the edited pages.',
+                name: 'Maya Chen',
+                role: 'Head of Growth, Fintech SaaS',
+                img: 'https://i.pravatar.cc/150?img=12'
+              },
+              {
+                text: 'The line edits were subtle but powerful. The team\'s edit memos taught our writers how to keep that standard. We now ship faster with fewer review cycles.',
+                name: 'Daniel Ortiz',
+                role: 'Content Lead, DevTools',
+                img: 'https://i.pravatar.cc/150?img=32'
+              }
+            ].map((t, i) => (
               <div key={i} className="rounded-3xl border border-white/10 bg-gradient-to-b from-purple-500/5 to-zinc-950 p-8 md:p-10 min-h-[320px] md:min-h-[380px] flex flex-col justify-between">
-                <p className="text-xl md:text-2xl leading-relaxed text-zinc-200">“We ship faster and sound sharper. The edit memos make every revision feel obvious. Our team learned a ton about voice.”</p>
+                <p className="text-xl md:text-2xl leading-relaxed text-zinc-200">“{t.text}”</p>
                 <div className="mt-8 flex items-center gap-4">
-                  <div className="h-14 w-14 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600" />
+                  <img src={t.img} alt={t.name} className="h-14 w-14 rounded-full object-cover" />
                   <div>
-                    <p className="text-sm font-medium">Head of Content, SaaS</p>
-                    <p className="text-xs text-zinc-400">Retainer client</p>
+                    <p className="text-sm font-medium">{t.name}</p>
+                    <p className="text-xs text-zinc-400">{t.role}</p>
                   </div>
                 </div>
               </div>
@@ -273,14 +294,14 @@ function App() {
           <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-purple-600/20 to-indigo-700/10 p-8 md:p-12">
             <div className="grid gap-8 md:grid-cols-2 items-center">
               <div className="text-center md:text-left">
-                <h3 className="text-2xl md:text-3xl font-semibold">Ready to make your writing unmistakable?</h3>
-                <p className="mt-2 text-zinc-300">Tell us about your piece, audience, and timeline—we’ll reply within one business day.</p>
+                <h3 className="text-2xl md:text-3xl font-semibold">Ready to get your editing done right?</h3>
+                <p className="mt-2 text-zinc-300">Share your document, audience, and deadline—we\'ll propose the right editing pass and timeline within one business day.</p>
               </div>
               <form className="grid gap-4">
                 <input placeholder="Your name" className="rounded-md bg-black/50 border border-white/10 px-4 py-3 text-sm outline-none focus:border-purple-500" />
                 <input placeholder="Email" type="email" className="rounded-md bg-black/50 border border-white/10 px-4 py-3 text-sm outline-none focus:border-purple-500" />
-                <textarea placeholder="What are you working on?" rows="3" className="rounded-md bg-black/50 border border-white/10 px-4 py-3 text-sm outline-none focus:border-purple-500" />
-                <button type="button" className="inline-flex justify-center rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-6 py-3 text-sm font-medium">Request a Quote</button>
+                <textarea placeholder="What are you editing?" rows="3" className="rounded-md bg-black/50 border border-white/10 px-4 py-3 text-sm outline-none focus:border-purple-500" />
+                <button type="button" className="inline-flex justify-center rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-5 py-2.5 text-xs font-medium">Request a Quote</button>
                 <p className="text-xs text-zinc-500 text-center md:text-left">By clicking, you agree to our friendly terms. We’ll never share your info.</p>
               </form>
             </div>
