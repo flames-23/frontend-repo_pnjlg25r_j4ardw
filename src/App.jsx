@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import Spline from '@splinetool/react-spline'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { PenLine, SpellCheck, Layers, Globe2, BookOpen, Zap, CheckCircle2 } from 'lucide-react'
 
 function App() {
   // Process scroll progress
@@ -10,6 +11,8 @@ function App() {
     offset: ['start 0.8', 'end 0.2']
   })
   const progressScale = useTransform(scrollYProgress, [0, 1], [0.02, 1])
+
+  const featureIcons = [PenLine, SpellCheck, Layers, Globe2, BookOpen, Zap]
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -100,7 +103,11 @@ function App() {
       </section>
 
       {/* Features with Sticky Sidebar on the RIGHT */}
-      <section id="features" className="relative py-20 md:py-28 bg-gradient-to-b from-black to-zinc-950">
+      <section id="features" className="relative py-20 md:py-28 bg-gradient-to-b from-black via-purple-950/20 to-zinc-950">
+        {/* subtle purple glow backdrop */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute left-1/2 top-10 h-64 w-64 -translate-x-1/2 rounded-full bg-purple-600/10 blur-3xl" />
+        </div>
         <div className="mx-auto max-w-7xl px-6">
           {/* Section Headline for the left list */}
           <div className="mb-10 text-center">
@@ -108,7 +115,7 @@ function App() {
             <p className="mt-3 text-zinc-300">Precision at every layer, from voice to structure.</p>
           </div>
           <div className="grid gap-10 lg:grid-cols-2">
-            {/* Left: Centered narrow boxes */}
+            {/* Left: Centered narrow boxes with subtle icons */}
             <div className="space-y-6">
               {[
                 {
@@ -135,27 +142,31 @@ function App() {
                   title: 'Fast, Collaborative Delivery',
                   body: 'Async reviews in your tools—Docs, Figma, Notion—plus transparent timelines and feedback loops.'
                 }
-              ].map((card, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.6, ease: 'easeOut' }}
-                  className="group max-w-md mx-auto rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur text-center transition hover:bg-white/[0.08]"
-                >
-                  <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-3 mx-auto" />
-                  <h3 className="text-base font-semibold">{card.title}</h3>
-                  <p className="mt-2 text-sm text-zinc-300">{card.body}</p>
-                </motion.div>
-              ))}
+              ].map((card, i) => {
+                const Icon = featureIcons[i % featureIcons.length]
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                    className="group max-w-md mx-auto rounded-2xl border border-white/10 bg-gradient-to-br from-purple-500/5 to-white/5 p-5 backdrop-blur text-center transition hover:bg-white/[0.08]"
+                  >
+                    <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-purple-500/10 ring-1 ring-purple-400/20">
+                      <Icon className="h-5 w-5 text-purple-300" />
+                    </div>
+                    <h3 className="text-base font-semibold">{card.title}</h3>
+                    <p className="mt-2 text-sm text-zinc-300">{card.body}</p>
+                  </motion.div>
+                )
+              })}
             </div>
 
-            {/* Right: Sticky What you get, headline NOT in a box */}
+            {/* Right: Sticky What you get, headline NOT in a box and no purple square */}
             <div>
               <div className="lg:sticky lg:top-8 space-y-4">
                 <div className="text-center pb-2">
-                  <div className="mx-auto h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-3" />
                   <h2 className="text-2xl font-semibold">What you get</h2>
                   <p className="mt-3 text-zinc-300">Clear, actionable edits with a calm, collaborative process.</p>
                 </div>
@@ -166,9 +177,9 @@ function App() {
                   'Brand voice systems and guidelines',
                   'Fast, collaborative delivery'
                 ].map((item, idx) => (
-                  <div key={idx} className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+                  <div key={idx} className="rounded-xl border border-white/10 bg-gradient-to-br from-purple-500/5 to-white/5 p-4 backdrop-blur">
                     <div className="flex items-start gap-3">
-                      <span className="mt-1 h-2 w-2 rounded-full bg-purple-400" />
+                      <CheckCircle2 className="h-4 w-4 mt-0.5 text-purple-300" />
                       <p className="text-sm text-zinc-300">{item}</p>
                     </div>
                   </div>
@@ -181,7 +192,10 @@ function App() {
       </section>
 
       {/* Process: step-by-step, smooth reveal while scrolling + progress bar */}
-      <section id="process" className="relative py-24 bg-zinc-950">
+      <section id="process" className="relative py-24 bg-gradient-to-b from-zinc-950 via-purple-950/10 to-zinc-950">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute right-10 top-10 h-56 w-56 rounded-full bg-purple-700/10 blur-3xl" />
+        </div>
         <div className="mx-auto max-w-6xl px-6" ref={processRef}>
           <div className="grid grid-cols-[10px_1fr] gap-6">
             {/* Progress bar column */}
@@ -212,7 +226,7 @@ function App() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, amount: 0.5 }}
                     transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.05 }}
-                    className="rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-black p-6"
+                    className="rounded-2xl border border-white/10 bg-gradient-to-br from-purple-500/5 to-zinc-900 p-6"
                   >
                     <div className="flex items-start gap-4">
                       <div className="text-purple-400 font-semibold">{s.n}</div>
@@ -230,7 +244,7 @@ function App() {
       </section>
 
       {/* Testimonials: larger and taller */}
-      <section id="testimonials" className="relative py-24 bg-black">
+      <section id="testimonials" className="relative py-24 bg-gradient-to-b from-black via-purple-950/10 to-black">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-semibold">What clients say</h2>
@@ -238,7 +252,7 @@ function App() {
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {[1,2].map((i) => (
-              <div key={i} className="rounded-3xl border border-white/10 bg-gradient-to-b from-zinc-900 to-zinc-950 p-8 md:p-10 min-h-[320px] md:min-h-[380px] flex flex-col justify-between">
+              <div key={i} className="rounded-3xl border border-white/10 bg-gradient-to-b from-purple-500/5 to-zinc-950 p-8 md:p-10 min-h-[320px] md:min-h-[380px] flex flex-col justify-between">
                 <p className="text-xl md:text-2xl leading-relaxed text-zinc-200">“We ship faster and sound sharper. The edit memos make every revision feel obvious. Our team learned a ton about voice.”</p>
                 <div className="mt-8 flex items-center gap-4">
                   <div className="h-14 w-14 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600" />
