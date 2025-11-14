@@ -108,7 +108,7 @@ function App() {
             <p className="mt-3 text-zinc-300">Precision at every layer, from voice to structure.</p>
           </div>
           <div className="grid gap-10 lg:grid-cols-2">
-            {/* Left: Text windows */}
+            {/* Left: Centered narrow boxes */}
             <div className="space-y-6">
               {[
                 {
@@ -142,19 +142,19 @@ function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 0.6, ease: 'easeOut' }}
-                  className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:bg-white/[0.08]"
+                  className="group max-w-md mx-auto rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur text-center transition hover:bg-white/[0.08]"
                 >
-                  <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-4 mx-auto lg:mx-0" />
-                  <h3 className="text-lg font-semibold">{card.title}</h3>
+                  <div className="h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-3 mx-auto" />
+                  <h3 className="text-base font-semibold">{card.title}</h3>
                   <p className="mt-2 text-sm text-zinc-300">{card.body}</p>
                 </motion.div>
               ))}
             </div>
 
-            {/* Right: Sticky What you get, with centered headline */}
+            {/* Right: Sticky What you get, headline NOT in a box */}
             <div>
               <div className="lg:sticky lg:top-8 space-y-4">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur text-center">
+                <div className="text-center pb-2">
                   <div className="mx-auto h-10 w-10 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 mb-3" />
                   <h2 className="text-2xl font-semibold">What you get</h2>
                   <p className="mt-3 text-zinc-300">Clear, actionable edits with a calm, collaborative process.</p>
