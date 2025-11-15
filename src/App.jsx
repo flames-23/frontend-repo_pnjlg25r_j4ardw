@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import Spline from '@splinetool/react-spline'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import { Scissors, Clapperboard, Film, Camera, Wand2, Zap, CheckCircle2, XCircle, ChevronDown } from 'lucide-react'
+import { Scissors, Clapperboard, Film, Camera, Wand2, Zap, CheckCircle2, XCircle, ChevronDown, Youtube, Instagram, Megaphone } from 'lucide-react'
 
 function App() {
   // Process scroll progress
@@ -41,26 +41,30 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Navigation */}
-      <header className="relative z-20">
-        <nav className="mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 shadow-lg" />
-            <span className="text-lg font-semibold tracking-wide">Arteks Media</span>
+      {/* Floating Navigation */}
+      <div className="fixed top-4 left-0 right-0 z-30 flex justify-center px-4">
+        <nav className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 rounded-full border border-white/10 bg-black/40 px-3 py-2 backdrop-blur-xl">
+          <div className="flex items-center gap-3 pl-1">
+            <div className="h-8 w-8 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 shadow-[0_8px_30px_rgba(99,102,241,0.35)]" />
+            <span className="text-sm font-semibold tracking-wide">Arteks Media</span>
           </div>
-          <div className="hidden md:flex items-center gap-8 text-sm text-zinc-300">
-            <a href="#features" className="hover:text-white transition-colors">Features</a>
-            <a href="#compare" className="hover:text-white transition-colors">Why us</a>
-            <a href="#process" className="hover:text-white transition-colors">Process</a>
-            <a href="#work" className="hover:text-white transition-colors">Showcase</a>
-            <a href="#testimonials" className="hover:text-white transition-colors">Testimonials</a>
+          <div className="hidden md:flex items-center gap-2">
+            <div className="flex items-center gap-4 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-zinc-300">
+              <a href="#features" className="hover:text-white transition">Features</a>
+              <a href="#compare" className="hover:text-white transition">Why us</a>
+              <a href="#process" className="hover:text-white transition">Process</a>
+              <a href="#work" className="hover:text-white transition">Showcase</a>
+              <a href="#testimonials" className="hover:text-white transition">Testimonials</a>
+            </div>
           </div>
-          <a href="#contact" className="inline-flex items-center gap-2 rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-3 py-1.5 text-xs font-medium">Get a Quote</a>
+          <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-br from-purple-500 via-fuchsia-500 to-indigo-500 px-3 py-2 text-[11px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_10px_20px_rgba(139,92,246,0.35)] ring-1 ring-white/20 transition-transform hover:translate-y-[1px] active:translate-y-[2px]">
+            Get a Quote
+          </a>
         </nav>
-      </header>
+      </div>
 
       {/* Hero with Spline cover (centered text) */}
-      <section className="relative h-[80vh] md:h-[88vh] overflow-hidden">
+      <section className="relative h-[88vh] overflow-hidden">
         {/* 3D Cover */}
         <div className="absolute inset-0">
           <Spline
@@ -69,11 +73,15 @@ function App() {
           />
         </div>
 
-        {/* Misty gradient overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/70 via-purple-900/40 to-black/90" />
-        <div className="pointer-events-none absolute inset-0 opacity-60 mix-blend-screen" style={{
-          background: 'radial-gradient(60% 60% at 50% 40%, rgba(147, 51, 234, 0.30) 0%, rgba(0,0,0,0.0) 60%)'
-        }} />
+        {/* Misty gradient overlay (static + subtle float) */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/70 via-purple-900/30 to-black/90" />
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-60 mix-blend-screen"
+          style={{ background: 'radial-gradient(60% 60% at 50% 40%, rgba(147,51,234,0.28) 0%, rgba(0,0,0,0) 60%)' }}
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+        />
 
         {/* Centered Content */}
         <div className="relative z-10 h-full">
@@ -91,16 +99,43 @@ function App() {
                 We help creators, brands, and teams tell tighter stories—clean cuts, color that pops, sound that carries, and motion that engages.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#contact" className="inline-flex justify-center rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-6 py-3 text-sm font-medium">Start a Project</a>
-                <a href="#features" className="inline-flex justify-center rounded-md border border-white/10 bg-white/5 hover:bg-white/10 transition-colors px-6 py-3 text-sm font-medium text-zinc-200">Explore Features</a>
+                <a href="#contact" className="inline-flex justify-center rounded-full bg-gradient-to-br from-purple-500 via-fuchsia-500 to-indigo-500 px-6 py-3 text-sm font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_16px_40px_rgba(139,92,246,0.35)] ring-1 ring-white/20 transition-transform hover:translate-y-[1px] active:translate-y-[2px]">Start a Project</a>
+                <a href="#features" className="inline-flex justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors px-6 py-3 text-sm font-medium text-zinc-200">Explore Features</a>
               </div>
-              <div className="mt-8 flex items-center justify-center gap-6 text-xs text-zinc-400">
-                <span>Reels, YouTube, Ads, Docs</span>
-                <span className="h-1 w-1 rounded-full bg-zinc-500" />
-                <span>Captions & Thumbnails</span>
-                <span className="h-1 w-1 rounded-full bg-zinc-500" />
-                <span>Multi-aspect delivery</span>
-              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom hero capability boxes */}
+        <div className="relative z-20 -mt-8 pb-6">
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {[{
+                title: 'Reels',
+                Icon: Instagram,
+                desc: 'Vertical 9:16 cuts with bold captions'
+              },{
+                title: 'YouTube',
+                Icon: Youtube,
+                desc: 'Story-led edits with motion titles'
+              },{
+                title: 'Ads',
+                Icon: Megaphone,
+                desc: 'Hook-forward creative built for ROAS'
+              }].map((c, i) => (
+                <div key={i} className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-5">
+                  <div aria-hidden className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-purple-500/25 blur-3xl" />
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/30 shadow-[0_0_0_3px_rgba(255,255,255,0.06),0_10px_30px_rgba(168,85,247,0.45)]">
+                      <c.Icon className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold">{c.title}</p>
+                      <p className="text-xs text-zinc-300">{c.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -178,7 +213,9 @@ function App() {
                     viewport={{ once: false, amount: 0.3 }}
                     transition={{ duration: 0.6, ease: 'easeOut' }}
                     className="group max-w-md mx-auto rounded-2xl border border-white/10 bg-gradient-to-br from-purple-500/5 to-white/5 p-5 backdrop-blur text-center transition hover:bg-white/[0.08]"
-                  >
+                  {
+                    ...({})
+                  }>
                     <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-purple-500/10 ring-1 ring-purple-400/20">
                       <Icon className="h-5 w-5 text-purple-300" />
                     </div>
@@ -218,7 +255,7 @@ function App() {
                     </div>
                   </div>
                 ))}
-                <a href="#contact" className="block text-center rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-3 py-2 text-xs font-medium">Request a Quote</a>
+                <a href="#contact" className="block text-center rounded-full bg-gradient-to-br from-purple-500 via-fuchsia-500 to-indigo-500 px-3 py-2 text-xs font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_10px_20px_rgba(139,92,246,0.35)] ring-1 ring-white/20 transition-transform hover:translate-y-[1px]">Request a Quote</a>
               </div>
             </div>
           </div>
@@ -387,7 +424,7 @@ function App() {
                 <input placeholder="Your name" className="rounded-md bg-black/50 border border-white/10 px-4 py-3 text-sm outline-none focus:border-purple-500" />
                 <input placeholder="Email" type="email" className="rounded-md bg-black/50 border border-white/10 px-4 py-3 text-sm outline-none focus:border-purple-500" />
                 <textarea placeholder="What footage are we working with?" rows="3" className="rounded-md bg-black/50 border border-white/10 px-4 py-3 text-sm outline-none focus:border-purple-500" />
-                <button type="button" className="inline-flex justify-center rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-5 py-2.5 text-xs font-medium">Request a Quote</button>
+                <button type="button" className="inline-flex justify-center rounded-full bg-gradient-to-br from-purple-500 via-fuchsia-500 to-indigo-500 px-5 py-2.5 text-xs font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_12px_30px_rgba(139,92,246,0.35)] ring-1 ring-white/20 transition-transform hover:translate-y-[1px]">Request a Quote</button>
                 <p className="text-xs text-zinc-500 text-center md:text-left">By clicking, you agree to our friendly terms. We’ll never share your info.</p>
               </form>
             </div>
@@ -413,7 +450,7 @@ function App() {
                     className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
                   >
                     <span className="text-sm md:text-base font-medium text-zinc-100">{item.q}</span>
-                    <ChevronDown className={`h-4 w-4 shrink-0 transition-transform text-zinc-400 ${isOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`${isOpen ? 'rotate-180' : ''} h-4 w-4 shrink-0 transition-transform text-zinc-400`} />
                   </button>
                   <AnimatePresence initial={false}>
                     {isOpen && (
