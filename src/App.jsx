@@ -64,7 +64,7 @@ function App() {
       </div>
 
       {/* Hero with Spline cover (centered text) */}
-      <section className="relative min-h-[108vh] lg:min-h-[125vh] pt-28 sm:pt-32 lg:pt-40 overflow-hidden">
+      <section className="relative min-h-[130vh] lg:min-h-[150vh] pt-28 sm:pt-32 lg:pt-40 overflow-hidden">
         {/* 3D Cover */}
         <div className="absolute inset-0">
           <Spline
@@ -107,7 +107,7 @@ function App() {
         </div>
 
         {/* Bottom hero capability boxes */}
-        <div className="relative z-20 -mt-6 md:-mt-8 pb-8">
+        <div className="relative z-20 mt-12 md:mt-16 pb-12">
           <div className="mx-auto max-w-5xl px-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[{
