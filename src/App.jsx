@@ -1,7 +1,7 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Spline from '@splinetool/react-spline'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { Scissors, Clapperboard, Film, Camera, Wand2, Zap, CheckCircle2, XCircle } from 'lucide-react'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { Scissors, Clapperboard, Film, Camera, Wand2, Zap, CheckCircle2, XCircle, ChevronDown } from 'lucide-react'
 
 function App() {
   // Process scroll progress
@@ -14,6 +14,31 @@ function App() {
 
   const featureIcons = [Scissors, Clapperboard, Film, Camera, Wand2, Zap]
 
+  // FAQ state
+  const [openIdx, setOpenIdx] = useState(null)
+  const faqs = [
+    {
+      q: 'What types of videos do you edit?',
+      a: 'Short-form (Reels, TikTok, Shorts), YouTube videos, product promos, ads, interviews, explainers, and multi-cam podcasts. We also repurpose long-form into 9:16 clips.'
+    },
+    {
+      q: 'How fast is turnaround?',
+      a: 'First cuts typically in 3–5 business days depending on scope. Rush options are available—tell us your launch date and we’ll plan backwards.'
+    },
+    {
+      q: 'How do revisions work?',
+      a: 'We collaborate via time-stamped comments. Most projects include two revision rounds, but we’ll align on what’s needed during scoping.'
+    },
+    {
+      q: 'What deliverables do we receive?',
+      a: 'Final exports in requested aspect ratios (16:9, 9:16, 1:1), captions (burned-in or SRT), thumbnail/title suggestions, and archive-friendly file organization.'
+    },
+    {
+      q: 'Can you match our brand style?',
+      a: 'Yes—share your guidelines, fonts, and references. We adapt color, motion, and titling to feel native to your brand.'
+    }
+  ]
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
@@ -21,7 +46,7 @@ function App() {
         <nav className="mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="h-9 w-9 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 shadow-lg" />
-            <span className="text-lg font-semibold tracking-wide">Prism Edit Studio</span>
+            <span className="text-lg font-semibold tracking-wide">Arteks Media</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm text-zinc-300">
             <a href="#features" className="hover:text-white transition-colors">Features</a>
@@ -370,10 +395,51 @@ function App() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section id="faq" className="relative py-20 bg-gradient-to-b from-black via-purple-950/10 to-black">
+        <div className="mx-auto max-w-4xl px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-semibold">FAQ</h2>
+            <p className="mt-3 text-zinc-300">Answers to common questions about scope, speed, and deliverables.</p>
+          </div>
+          <div className="space-y-3">
+            {faqs.map((item, i) => {
+              const isOpen = openIdx === i
+              return (
+                <div key={i} className="rounded-xl border border-white/10 bg-gradient-to-br from-purple-500/5 to-zinc-900">
+                  <button
+                    type="button"
+                    onClick={() => setOpenIdx(isOpen ? null : i)}
+                    className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
+                  >
+                    <span className="text-sm md:text-base font-medium text-zinc-100">{item.q}</span>
+                    <ChevronDown className={`h-4 w-4 shrink-0 transition-transform text-zinc-400 ${isOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        key="content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                        className="px-5 pb-5 text-sm text-zinc-300"
+                      >
+                        {item.a}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="border-t border-white/10 bg-black">
         <div className="mx-auto max-w-7xl px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-400">
-          <p>© {new Date().getFullYear()} Prism Edit Studio. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Arteks Media. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-white">Privacy</a>
             <a href="#" className="hover:text-white">Terms</a>
