@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import Spline from '@splinetool/react-spline'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Scissors, Clapperboard, Film, Camera, Wand2, Zap, CheckCircle2 } from 'lucide-react'
+import { Scissors, Clapperboard, Film, Camera, Wand2, Zap, CheckCircle2, XCircle } from 'lucide-react'
 
 function App() {
   // Process scroll progress
@@ -25,6 +25,7 @@ function App() {
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm text-zinc-300">
             <a href="#features" className="hover:text-white transition-colors">Features</a>
+            <a href="#compare" className="hover:text-white transition-colors">Why us</a>
             <a href="#process" className="hover:text-white transition-colors">Process</a>
             <a href="#work" className="hover:text-white transition-colors">Showcase</a>
             <a href="#testimonials" className="hover:text-white transition-colors">Testimonials</a>
@@ -194,6 +195,66 @@ function App() {
                 ))}
                 <a href="#contact" className="block text-center rounded-md bg-purple-600 hover:bg-purple-500 transition-colors px-3 py-2 text-xs font-medium">Request a Quote</a>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Comparison: Others vs Us */}
+      <section id="compare" className="relative py-24 bg-gradient-to-b from-zinc-950 via-purple-950/10 to-zinc-950">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute left-10 top-10 h-56 w-56 rounded-full bg-purple-700/10 blur-3xl" />
+          <div className="absolute right-10 bottom-10 h-56 w-56 rounded-full bg-indigo-700/10 blur-3xl" />
+        </div>
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-semibold">Why teams switch to us</h2>
+            <p className="mt-3 text-zinc-300">A clear look at typical editing offers versus how we deliver more.</p>
+          </div>
+
+          <div className="grid gap-6 md:gap-8 md:grid-cols-2">
+            {/* Others */}
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-zinc-950 p-6 md:p-8">
+              <div aria-hidden className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full bg-zinc-700/20 blur-2xl" />
+              <p className="text-xs uppercase tracking-wider text-zinc-400">What other editing agencies offer</p>
+              <h3 className="mt-2 text-xl font-semibold">Surface-level edits that miss the brief</h3>
+              <ul className="mt-5 space-y-3">
+                {[
+                  'Generic templates and overused transitions',
+                  'No story structure; cuts feel random',
+                  'Inconsistent color and muddy audio',
+                  'Slow turnarounds and unclear timelines',
+                  'Limited formats — one export and you’re done',
+                  'Revisions capped and hard to collaborate'
+                ].map((it, i) => (
+                  <li key={i} className="flex items-start gap-3 text-zinc-300">
+                    <XCircle className="mt-0.5 h-4 w-4 text-zinc-500" />
+                    <span className="text-sm">{it}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Us */}
+            <div className="relative overflow-hidden rounded-2xl border border-purple-400/20 bg-gradient-to-br from-purple-600/10 to-indigo-600/10 p-6 md:p-8 backdrop-blur">
+              <div aria-hidden className="pointer-events-none absolute -right-10 -bottom-10 h-56 w-56 rounded-full bg-purple-500/20 blur-3xl" />
+              <p className="text-xs uppercase tracking-wider text-purple-200/80">What our studio delivers</p>
+              <h3 className="mt-2 text-xl font-semibold">Story-led, polished edits that drive retention</h3>
+              <ul className="mt-5 space-y-3">
+                {[
+                  'Narrative-first cutting with thoughtful pacing',
+                  'Color and audio pass tailored to your brand',
+                  'Tasteful motion graphics, titles, and callouts',
+                  'Fast, transparent timelines with review links',
+                  'Multi-aspect exports (16:9, 9:16, 1:1) + presets',
+                  'Captioning (burn-in or SRT) and thumbnail/title support'
+                ].map((it, i) => (
+                  <li key={i} className="flex items-start gap-3 text-zinc-200">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 text-purple-300" />
+                    <span className="text-sm">{it}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
