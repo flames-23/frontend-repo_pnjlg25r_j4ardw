@@ -42,7 +42,7 @@ function App() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Floating Navigation */}
-      <div className="fixed top-4 left-0 right-0 z-30 flex justify-center px-4">
+      <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
         <nav className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 rounded-full border border-white/10 bg-black/40 px-3 py-2 backdrop-blur-xl">
           <div className="flex items-center gap-3 pl-1">
             <div className="h-8 w-8 rounded-md bg-gradient-to-br from-purple-500 to-indigo-600 shadow-[0_8px_30px_rgba(99,102,241,0.35)]" />
@@ -64,7 +64,7 @@ function App() {
       </div>
 
       {/* Hero with Spline cover (centered text) */}
-      <section className="relative h-[88vh] overflow-hidden">
+      <section className="relative min-h-[108vh] lg:min-h-[125vh] pt-28 sm:pt-32 lg:pt-40 overflow-hidden">
         {/* 3D Cover */}
         <div className="absolute inset-0">
           <Spline
@@ -107,7 +107,7 @@ function App() {
         </div>
 
         {/* Bottom hero capability boxes */}
-        <div className="relative z-20 -mt-8 pb-6">
+        <div className="relative z-20 -mt-6 md:-mt-8 pb-8">
           <div className="mx-auto max-w-5xl px-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[{
@@ -213,9 +213,7 @@ function App() {
                     viewport={{ once: false, amount: 0.3 }}
                     transition={{ duration: 0.6, ease: 'easeOut' }}
                     className="group max-w-md mx-auto rounded-2xl border border-white/10 bg-gradient-to-br from-purple-500/5 to-white/5 p-5 backdrop-blur text-center transition hover:bg-white/[0.08]"
-                  {
-                    ...({})
-                  }>
+                  >
                     <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-purple-500/10 ring-1 ring-purple-400/20">
                       <Icon className="h-5 w-5 text-purple-300" />
                     </div>
